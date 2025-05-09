@@ -1,0 +1,28 @@
+{
+  "name": "caloriefit-server",
+  "version": "1.0.0",
+  "description": "Health tracker backend",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Adarsh7448/caloriefit.git"
+  },
+  "keywords": [
+    "Health"
+  ],
+  "author": "Adarsh7448",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Adarsh7448/caloriefit/issues"
+  },
+  "homepage": "https://github.com/Adarsh7448/caloriefit#readme",
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongoose": "^8.14.2",
+    "nodemon": "^3.1.10"
+  }
+}
