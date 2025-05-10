@@ -1,0 +1,16 @@
+backend components
+
+users - auth, usertable
+
+food categories - vege, meat, sprouts
+food items - food CRUD, macros
+
+workout categories - crossfit, strength etc.
+workout names
+
+workout chart <----> user
+diet chart <----> user 
+
+utilities - calorie count in foods, calorie burnt
+
+reminders
