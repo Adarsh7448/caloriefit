@@ -1,14 +1,16 @@
-const fs = require('fs')
+const fs = require('fs');
+const dayjs = require('dayjs');
 
-function logger(filename){
+function logger(filename) {
     return (req, res, next) => {
-        fs.appendFile(
-            filename, 
-            `${Date.now()}: ${req.path} ${req.method} ${req.ip}\n`,
-            (err, data) => {
-                next()
-            })
-    } 
+        const timestamp = dayjs().format('YYYY-MM-DD HH:mm:ss');
+        const logEntry = `${timestamp}: ${req.method} ${req.path} ${req.ip}\n`;
+
+        fs.appendFile(filename, logEntry, (err) => {
+            if (err) console.error('Logging failed:', err);
+            next();
+        });
+    };
 }
 
 module.exports = {

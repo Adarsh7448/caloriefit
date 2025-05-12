@@ -4,3 +4,40 @@
  1746755850556: /favicon.ico GET ::ffff:127.0.0.1
 1746756238922: /api/users GET ::ffff:127.0.0.1
 1746845224960: /backend/user/login GET ::ffff:127.0.0.1
+1747007253054: /backend/user/login POST ::ffff:127.0.0.1
+2025-05-12 05:22:01: POST /backend/user/register ::ffff:127.0.0.1
+2025-05-12 05:22:36: POST /backend/user/login ::ffff:127.0.0.1
+2025-05-12 06:19:51: GET /users/admin ::ffff:127.0.0.1
+2025-05-12 06:21:12: GET /users/admin ::ffff:127.0.0.1
+2025-05-12 06:22:11: GET /users/admin ::ffff:127.0.0.1
+2025-05-12 06:26:38: GET /users/admin ::ffff:127.0.0.1 function status(code) {
+  // Check if the status code is not an integer
+  if (!Number.isInteger(code)) {
+    throw new TypeError(`Invalid status code: ${JSON.stringify(code)}. Status code must be an integer.`);
+  }
+  // Check if the status code is outside of Node's valid range
+  if (code < 100 || code > 999) {
+    throw new RangeError(`Invalid status code: ${JSON.stringify(code)}. Status code must be greater than 99 and less than 1000.`);
+  }
+
+  this.statusCode = code;
+  return this;
+}
+2025-05-12 06:31:27: GET /users/admin ::ffff:127.0.0.1
+2025-05-12 06:31:41: GET /backend/user/admin ::ffff:127.0.0.1
+2025-05-12 06:34:02: GET /backend/user/admin ::ffff:127.0.0.1
+2025-05-12 06:34:12: POST /backend/user/login ::ffff:127.0.0.1
+2025-05-12 06:34:31: GET /backend/user/admin ::ffff:127.0.0.1
+2025-05-12 06:35:48: GET /backend/user/admin ::ffff:127.0.0.1
+2025-05-12 06:36:00: GET /backend/user/user ::ffff:127.0.0.1
+2025-05-12 06:37:22: GET /backend/user/user ::ffff:127.0.0.1
+2025-05-12 06:38:59: GET /backend/user/user ::ffff:127.0.0.1
+2025-05-12 06:40:30: GET /backend/user/user ::ffff:127.0.0.1
+2025-05-12 06:40:48: GET /backend/user/user ::ffff:127.0.0.1
+2025-05-12 06:40:56: GET /backend/user/user ::ffff:127.0.0.1
+2025-05-12 06:41:04: GET /backend/user/user ::ffff:127.0.0.1
+2025-05-12 06:41:49: POST /backend/user/register ::ffff:127.0.0.1
+2025-05-12 06:42:01: POST /backend/user/login ::ffff:127.0.0.1
+2025-05-12 06:42:16: GET /backend/user/user ::ffff:127.0.0.1
+2025-05-12 06:42:23: GET /backend/user/admin ::ffff:127.0.0.1
+2025-05-12 07:09:55: GET /backend/user/admin ::ffff:127.0.0.1

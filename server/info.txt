@@ -4,12 +4,14 @@ users - auth, usertable
 
 food categories - vege, meat, sprouts
 food items - food CRUD, macros
+categories ->----<- items
 
 workout categories - crossfit, strength etc.
 workout names
+workout ->----<- names
 
-workout chart <----> user
-diet chart <----> user 
+user -l---<- workout chart
+user -l---<- diet chart
 
 utilities - calorie count in foods, calorie burnt
 
