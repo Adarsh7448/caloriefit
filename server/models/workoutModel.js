@@ -8,7 +8,11 @@ const workoutCategorySchema = new mongoose.Schema({
     },
     description: {
         type: String,
-    }
+    },
+    workouts: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Workout", // This links the models
+    }]
 }, { timestamps: true}) 
 
 const workoutSchema = new mongoose.Schema({
@@ -49,17 +53,16 @@ const workoutSchema = new mongoose.Schema({
     videoUrl: {
         type: String,
     },
-    category: {
+    categories: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'FoodCategory', // This links the models
-        required: true,
-    },
+        ref: "WorkoutCategory", // This links the models
+    }]
 }, { timestamps: true}) 
 
-const workoutCategoryModel = mongoose.model("workoutCategory", workoutCategorySchema)
-const workoutModel = mongoose.model("Workout", workoutSchema)
+const WorkoutCategory = mongoose.model("WorkoutCategory", workoutCategorySchema, "workout_categories")
+const Workout = mongoose.model("Workout", workoutSchema, "workouts")
 
 module.exports = {
-    workoutCategoryModel,
-    workoutModel
+    WorkoutCategory,
+    Workout
 }

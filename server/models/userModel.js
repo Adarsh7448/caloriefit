@@ -13,13 +13,50 @@ const userSchema = new mongoose.Schema({
         role: {
             type: String,
             required: true,
-            enum: ["admin", "user"]
+            enum: ["admin", "user"],
+            default: "user"
+        },
+        maintenanceCalories: {
+            type: Number,
+            required: true,
+            default: 0
+        },
+        targetCalories: {
+            type: Number,
+            required: true,
+            default: 0
+        },
+        height: {
+            type: Number,
+            required: true,
+            default: 0
+        },
+        weight: {
+            type: Number,
+            required: true,
+            default: 0
+        }, 
+        goal: {
+            type: String,
+            required: true,
+            default: "weight loss"
+        },
+        gender: {
+            type: String,
+            required: true,
+            enum: ["male", "female", "not-set"],
+            default: "not-set"
+        }, 
+        age: {
+            type: Number,
+            required: true,
+            default: 0
         }    
     }, 
     {
         timestamps: true
     });
     
-const userModel = mongoose.model("User", userSchema);
+const User = mongoose.model("User", userSchema);
 
-module.exports = userModel;
+module.exports = User;

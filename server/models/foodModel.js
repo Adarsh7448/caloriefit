@@ -8,7 +8,11 @@ const foodCategorySchema = new mongoose.Schema({
     },
     description: {
         type: String,
-    }
+    },
+    foodItems: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "FoodItem"
+    }]
 }, { timestamps: true}) 
 
 const foodItemSchema = new mongoose.Schema({
@@ -44,13 +48,18 @@ const foodItemSchema = new mongoose.Schema({
     },
     imageUrl: {
         type: String,
-    } 
+    },
+    categories: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "FoodCategory", // This links the models
+    }] 
 }, { timestamps: true}) 
 
-const foodCategoryModel = mongoose.model("foodCategory", foodCategorySchema)
-const foodItemModel = mongoose.model("foodItem", foodItemSchema)
+
+const FoodCategory = mongoose.model("FoodCategory", foodCategorySchema, "food_categories")
+const FoodItem = mongoose.model("FoodItem", foodItemSchema, "food_items")
 
 module.exports = {
-    foodCategoryModel,
-    foodItemModel
+    FoodCategory,
+    FoodItem
 }
