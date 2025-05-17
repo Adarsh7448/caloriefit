@@ -8,6 +8,7 @@ const foodCategorySchema = new mongoose.Schema({
     },
     description: {
         type: String,
+        default: "This is a new food category. You can update it later!"
     },
     foodItems: [{
         type: mongoose.Schema.Types.ObjectId,
