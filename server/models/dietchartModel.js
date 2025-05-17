@@ -1,5 +1,36 @@
 const mongoose = require("mongoose");
-// const User = require('./userModel');
+
+const mealSchema = new mongoose.Schema({
+    foodItem: { 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'FoodItem',
+        required: true 
+    },
+    quantity: { 
+        type: Number, // e.g., 2 servings
+        required: true
+    }, 
+    unit: {
+        type: String,     // e.g., "cups", "g"
+        required: true,
+    }
+}, {_id: false});
+
+const sessionSchema = new mongoose.Schema({
+    day: {
+        type: String,
+        required: true
+    },
+    type: {
+        type: String,
+        required: true
+    },
+    time: {
+        type: String,
+        required: true
+    },
+    meals: [mealSchema]
+}, {_id: false});
 
 const dietchartSchema = new mongoose.Schema({
     name: {
@@ -24,38 +55,6 @@ const dietchartSchema = new mongoose.Schema({
     } 
 }); 
 
-const sessionSchema = new mongoose.Schema({
-    day: {
-        type: String,
-        required: true
-    },
-    type: {
-        type: String,
-        required: true
-    },
-    time: {
-        type: String,
-        required: true
-    },
-    meals: [mealSchema]
-}, {_id: false});
-
-const mealSchema = new mongoose.Schema({
-    foodItem: { 
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'FoodItem',
-        required: true 
-    },
-    quantity: { 
-        type: Number, // e.g., 2 servings
-        required: true
-    }, 
-    unit: {
-        type: String,     // e.g., "cups", "g"
-        required: true,
-    }
-}, {_id: false});
-
-const Dietchart = mongoose.model("Dietchart", dietchartSchema, "dietchart");
+const Dietchart = mongoose.model("Dietchart", dietchartSchema, "diet_charts");
 
 module.exports = Dietchart;

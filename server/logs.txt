@@ -41,3 +41,8 @@
 2025-05-12 06:42:16: GET /backend/user/user ::ffff:127.0.0.1
 2025-05-12 06:42:23: GET /backend/user/admin ::ffff:127.0.0.1
 2025-05-12 07:09:55: GET /backend/user/admin ::ffff:127.0.0.1
+2025-05-16 15:50:42: POST /backend/user/register ::ffff:127.0.0.1
+2025-05-16 15:51:14: POST /backend/user/register ::ffff:127.0.0.1
+2025-05-16 15:55:08: POST /backend/user/login ::ffff:127.0.0.1
+2025-05-16 15:55:36: GET /backend/user/admin ::ffff:127.0.0.1
+2025-05-16 15:55:46: GET /backend/user/user ::ffff:127.0.0.1

@@ -1,2 +1,4 @@
 .env
 /server/node_modules
+/server/controllers
+/server/logs.txt
