@@ -23,10 +23,10 @@ const sessionSchema = new mongoose.Schema({
     },
     type: {
         type: String,
-        required: true
+        required: true,
     },
     time: {
-        type: String,
+        type: Date,
         required: true
     },
     meals: [mealSchema]

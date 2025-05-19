@@ -6,20 +6,25 @@ const {
     getOneFoodCategory,
     createFoodCategory,
     updateFoodCategory,
+    modifyFoodCategory,
     deleteFoodCategory
-} = require('../controllers/foodCategoryControllers');
+} = require('../controllers/foodCategory');
 
-const foodRouter = express.Router()
+const foodCategoryRouter = express.Router()
 
-foodRouter
+foodCategoryRouter
 .route('/')
-.get(getOneFoodCategory)
+.get(listFoodCategory)
 .post(createFoodCategory)
+
+foodCategoryRouter
+.route('/:name')
+.get(getOneFoodCategory)
+
+foodCategoryRouter
+.route('/:id')
 .put(updateFoodCategory)
+.patch(modifyFoodCategory)
 .delete(deleteFoodCategory)
 
-foodRouter
-.route('/all')
-.get(listFoodCategory)
-
-module.exports = foodRouter;
+module.exports = foodCategoryRouter;

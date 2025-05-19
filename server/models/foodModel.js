@@ -22,22 +22,22 @@ const foodItemSchema = new mongoose.Schema({
         unique: true,
         required: true
     },
-    protein: {
+    protein: { // per 100 g
         type: Number,
         required: true,
         default: 0
     },
-    carbs: {
+    carbs: { // per 100 g
         type: Number,
         required: true,
         default: 0
     },
-    fats: {
+    fats: { // per 100 g
         type: Number,
         required: true,
         default: 0
     },
-    calories: {
+    calories: { // per 100 g
         type: Number,
         required: true,
         default: 0

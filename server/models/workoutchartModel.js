@@ -1,23 +1,42 @@
 const mongoose = require('mongoose');
 
+const exerciseSchema = new mongoose.Schema({
+    workout: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Workout"
+    },
+    reps: {
+      type: Number,
+      default: 0
+    },
+    sets: {
+      type: Number,
+      default: 0
+    },
+    duration: {
+      type: Number, // Duration in minutes
+      default: 0
+    },
+    caloriesBurned: {
+      type: Number,
+      default: 0
+    }
+}, {_id: false})
+
 const workoutSessionSchema = new mongoose.Schema({
-  workoutItem: {
-    type: Schema.Types.ObjectId,
-    ref: 'WorkoutItem',
-    required: true
+  day: {
+    type: String,
+    required: true,
   },
   time: {
     type: String, // e.g., "07:00 AM"
-    required: true
-  },
-  duration: {
-    type: Number, // in minutes
     required: true
   },
   completed: {
     type: Boolean,
     default: false
   },
+  totalWorkouts: [exerciseSchema],
   notes: {
     type: String
   }
@@ -34,11 +53,8 @@ const workoutChartSchema = new mongoose.Schema({
     required: true
   },
   sessions: [workoutSessionSchema],
-  notes: {
-    type: String
-  }
 }, { timestamps: true });
 
-const WorkoutChart = mongoose.model("WorkoutChart", workoutChartSchema, "workout_charts");
+const Workoutchart = mongoose.model("Workoutchart", workoutChartSchema, "workout_charts");
 
-module.exports = WorkoutChart;
+module.exports = Workoutchart;

@@ -8,6 +8,7 @@ const workoutCategorySchema = new mongoose.Schema({
     },
     description: {
         type: String,
+        default: "This is a set of high calorie burning exercises"
     },
     workouts: [{
         type: mongoose.Schema.Types.ObjectId,
@@ -21,31 +22,7 @@ const workoutSchema = new mongoose.Schema({
         unique: true,
         required: true
     },
-    reps: { 
-        type: Number,
-        default: 0
-    },
-    sets: {
-        type: Number,
-        default: 0
-    },
-    duration: { // average time in minutes
-        type: Number,
-        required: true,
-        default: 0
-    },
-    intensity: {
-        type: String,
-        required: true,
-        enum: ["low", "medium", "high"],
-        default: "medium"
-    },
-    instructions: {
-        type: Number,
-        required: true,
-        default: 0
-    },
-    caloriesBurned: { // Estimated calories burned per session
+    caloriesBurned: { // Estimated calories burned per session (/min or /set)
         type: Number,
         required: true,
         default: 0
