@@ -8,7 +8,7 @@ const listDietchart = async (req, res) => {
 
 // get a user's dietchart 
 const getDietchart = async (req, res) => {
-    const { userId } = req.body;
+    const { userid: userId } = req.params;
     const thischart = await Dietchart.findOne({userId: userId});
     return res.json(thischart)
 }
@@ -33,8 +33,8 @@ const createDietchart = async (req, res) => {
 // }
 
 const deleteDietchart = async (req, res) => {
-    const { chartId } = req.body;
-    await Dietchart.findByIdAndDelete({_id: chartId});
+    const { id } = req.params;
+    await Dietchart.findByIdAndDelete(id);
     return res.json({
         "message": "Dietchart deleted successfully!"
     })

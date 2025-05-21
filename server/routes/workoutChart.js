@@ -10,13 +10,16 @@ const {
 const workoutChartRouter = express.Router();
 
 workoutChartRouter
-.route('/all')
+.route('/')
 .get(listWorkoutchart)
+.post(createWorkoutchart)
 
 workoutChartRouter
-.route('/')
+.route('/:userid')
 .get(getWorkoutchart)
-.post(createWorkoutchart)
+
+workoutChartRouter
+.route('/:id')
 .delete(deleteWorkoutchart)
 
 module.exports = workoutChartRouter

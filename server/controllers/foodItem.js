@@ -8,7 +8,7 @@ const listFoodItems = async (req, res) => {
 
 // get a food category
 const getOneFoodItem = async (req, res) => {
-    const { name } = req.body;
+    const { name } = req.params;
     const foodItem = await FoodItem.findOne({name: name});
     return res.json(foodItem)
 }
@@ -25,27 +25,30 @@ const createFoodItem = async (req, res) => {
 
 // update a food category
 const updateFoodItem = async (req, res) => {
-    if (Object.keys(req.body).includes("category")){
-        const { name, category } = req.body;
-        const thisCat = await FoodCategory.findOne({name: category})
-        const foodItem = await FoodItem.findOneAndUpdate({name: name}, { $addToSet: { categories: thisCat._id }});
-        await FoodCategory.findOneAndUpdate({name: category}, { $addToSet: { foodItems: foodItem._id }});
-        return res.status(200).json({
-            message: `New food item, ${name} is added to the category ${category}` 
-        })
-    } else {
-        const { name, protein } = req.body;
-        const foodItem = await FoodItem.findOneAndUpdate({name: name}, {protein: protein});
-        return res.status(200).json({
-            message: "food category's description updated successfully!" 
-        })
-    }
+    const { id } = req.params;
+    const foodParams = req.body;
+    const foodItem = await FoodItem.findByIdAndUpdate(id, foodParams);
+    return res.status(200).json({
+        message: "food category's description updated successfully!" 
+    })
+}
+
+// Assign a food item to a category
+const assignFoodItem = async (req, res) => {
+    const { id } = req.params;
+    const { category } = req.body;
+    const thisCat = await FoodCategory.findOne({name: category})
+    const foodItem = await FoodItem.findByIdAndUpdate(id, { $addToSet: { categories: thisCat._id }});
+    await FoodCategory.findOneAndUpdate({name: category}, { $addToSet: { foodItems: foodItem._id }});
+    return res.status(200).json({
+        message: `New food item, ${foodItem.name} is added to the category ${category}` 
+    })
 }
 
 // delete a food category
 const deleteFoodItem = async (req, res) => {
-    const { name } = req.body;
-    await FoodItem.findOneAndDelete({name: name});
+    const { id } = req.params;
+    await FoodItem.findByIdAndDelete(id);
     return res.json({
         message: "food category's deleted successfully!" 
     })
@@ -56,5 +59,6 @@ module.exports = {
     getOneFoodItem,
     createFoodItem,
     updateFoodItem,
+    assignFoodItem,
     deleteFoodItem
 }

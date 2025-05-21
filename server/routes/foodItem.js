@@ -6,6 +6,7 @@ const {
     getOneFoodItem,
     createFoodItem,
     updateFoodItem,
+    assignFoodItem,
     deleteFoodItem
 } = require('../controllers/foodItem');
 
@@ -13,13 +14,17 @@ const foodItemRouter = express.Router()
 
 foodItemRouter
 .route('/')
-.get(getOneFoodItem)
+.get(listFoodItems)
 .post(createFoodItem)
-.put(updateFoodItem)
-.delete(deleteFoodItem)
 
 foodItemRouter
-.route('/all')
-.get(listFoodItems)
+.route('/:name')
+.get(getOneFoodItem)
+
+foodItemRouter
+.route('/:id')
+.put(updateFoodItem)
+.patch(assignFoodItem)
+.delete(deleteFoodItem)
 
 module.exports = foodItemRouter;

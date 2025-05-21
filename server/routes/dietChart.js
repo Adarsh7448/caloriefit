@@ -10,13 +10,16 @@ const {
 const dietChartRouter = express.Router();
 
 dietChartRouter
-.route('/all')
+.route('/')
 .get(listDietchart)
+.post(createDietchart)
 
 dietChartRouter
-.route('/')
+.route('/:userid')
 .get(getDietchart)
-.post(createDietchart)
+
+dietChartRouter
+.route('/:id')
 .delete(deleteDietchart)
 
 module.exports = dietChartRouter

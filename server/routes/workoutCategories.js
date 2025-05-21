@@ -7,6 +7,7 @@ const {
     getOneWorkoutCategory,
     createWorkoutCategory,
     updateWorkoutCategory,
+    modifyWorkoutCategory,
     deleteWorkoutCategory
 } = require("../controllers/workoutCategory");
 
@@ -14,13 +15,18 @@ const workoutCategoryRouter = express.Router();
 
 workoutCategoryRouter
 .route('/')
-.get(getOneWorkoutCategory)
+.get(listWorkoutCategory)
 .post(createWorkoutCategory)
-.put(updateWorkoutCategory)
-.delete(deleteWorkoutCategory)
 
 workoutCategoryRouter
-.route('/all')
-.get(listWorkoutCategory)
+.route('/:name')
+.get(getOneWorkoutCategory)
+
+workoutCategoryRouter
+.route('/:id')
+.put(updateWorkoutCategory)
+.patch(modifyWorkoutCategory)
+.delete(deleteWorkoutCategory)
+
 
 module.exports = workoutCategoryRouter;

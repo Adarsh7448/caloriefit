@@ -8,7 +8,7 @@ const listWorkouts = async (req, res) => {
 
 // get a workout
 const getOneWorkout = async (req, res) => {
-    const { name } = req.body;
+    const { name } = req.params;
     const workout = await Workout.findOne({name: name});
     return res.json(workout)
 }
@@ -25,27 +25,30 @@ const createWorkout = async (req, res) => {
 
 // update a workout
 const updateWorkout = async (req, res) => {
-    if (Object.keys(req.body).includes("category")){
-        const { name, category } = req.body;
-        const thisCat = await WorkoutCategory.findOne({name: category})
-        const workout = await Workout.findOneAndUpdate({name: name}, { $addToSet: { categories: thisCat._id }});
-        await WorkoutCategory.findOneAndUpdate({name: category}, { $addToSet: { workouts: workout._id }});
-        return res.status(200).json({
-            message: `New workout, ${name} is added to the category ${category}` 
-        })
-    } else {
-        const { name, reps } = req.body;
-        const workout = await Workout.findOneAndUpdate({name: name}, {reps: reps});
-        return res.status(200).json({
-            message: "Workout description updated successfully!" 
-        })
-    }
+    const { id } = req.params;
+    const workoutParams = req.body;
+    const workout = await Workout.findOneAndUpdate(id, workoutParams);
+    return res.status(200).json({
+        message: "Workout description updated successfully!" 
+    })
+}
+
+// Assign workout to a category
+const assignWorkout = async (req, res) => {
+    const { id } = req.params;
+    const { category } = req.body;
+    const thisCat = await WorkoutCategory.findOne({name: category})
+    const workout = await Workout.findByIdAndUpdate(id, { $addToSet: { categories: thisCat._id }});
+    await WorkoutCategory.findOneAndUpdate({name: category}, { $addToSet: { workouts: workout._id }});
+    return res.status(200).json({
+        message: `New workout, ${workout.name} is added to the category ${category}` 
+    })
 }
 
 // delete a workout
 const deleteWorkout = async (req, res) => {
-    const { name } = req.body;
-    await Workout.findOneAndDelete({name: name});
+    const { id } = req.params;
+    await Workout.findByIdAndDelete(id);
     return res.json({
         message: "workout deleted successfully!" 
     })
@@ -56,5 +59,6 @@ module.exports = {
     getOneWorkout,
     createWorkout,
     updateWorkout,
+    assignWorkout,
     deleteWorkout
 }

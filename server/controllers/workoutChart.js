@@ -8,7 +8,7 @@ const listWorkoutchart = async (req, res) => {
 
 // get a user's workoutchart 
 const getWorkoutchart = async (req, res) => {
-    const { userId } = req.body;
+    const { userid: userId } = req.params;
     const thischart = await Workoutchart.findOne({userId: userId});
     return res.json(thischart)
 }
@@ -33,8 +33,8 @@ const createWorkoutchart = async (req, res) => {
 // }
 
 const deleteWorkoutchart = async (req, res) => {
-    const { chartId } = req.body;
-    await Workoutchart.findByIdAndDelete({_id: chartId});
+    const { id } = req.params;
+    await Workoutchart.findByIdAndDelete(id);
     return res.json({
         "message": "Workoutchart deleted successfully!"
     })
