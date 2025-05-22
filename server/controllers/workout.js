@@ -27,7 +27,7 @@ const createWorkout = async (req, res) => {
 const updateWorkout = async (req, res) => {
     const { id } = req.params;
     const workoutParams = req.body;
-    const workout = await Workout.findOneAndUpdate(id, workoutParams);
+    const workout = await Workout.findByIdAndUpdate(id, workoutParams);
     return res.status(200).json({
         message: "Workout description updated successfully!" 
     })
